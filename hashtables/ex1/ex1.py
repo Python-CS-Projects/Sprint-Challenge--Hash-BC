@@ -25,7 +25,7 @@ def get_indices_of_item_weights(weights, length, limit):
         if target:
             # Return an instance of an Answer tuple (zero, one)
             result = (target, j)
-            # print_answer(result)
+            print_answer(result)
             return result
         j += 1
 
