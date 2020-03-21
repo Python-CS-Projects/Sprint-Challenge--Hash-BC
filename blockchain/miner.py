@@ -25,7 +25,11 @@ def proof_of_work(last_proof):
     print("Searching for next proof")
     proof = 0
     #  TODO: Your code here
-
+    last_six = int(str(last_proof)[-6:])
+    # print(f"Whole Num: {last_proof}")
+    # print(f"Last six: {last_proof}")
+    while valid_proof(last_six, proof) is False:
+        proof += 1
     print("Proof found: " + str(proof) + " in " + str(timer() - start))
     return proof
 
@@ -40,6 +44,7 @@ def valid_proof(last_hash, proof):
     """
 
     # TODO: Your code here!
+    
     pass
 
 
@@ -66,6 +71,7 @@ if __name__ == '__main__':
         # Get the last proof from the server
         r = requests.get(url=node + "/last_proof")
         data = r.json()
+        # print(f"Data: {data}")
         new_proof = proof_of_work(data.get('proof'))
 
         post_data = {"proof": new_proof,
