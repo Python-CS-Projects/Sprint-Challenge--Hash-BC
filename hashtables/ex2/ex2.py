@@ -19,19 +19,29 @@ def reconstruct_trip(tickets, length):
     """
     YOUR CODE HERE
     """
+    arr = []
     # Each ticket is represented as an instance of Class Ticket
     for ticket in tickets:
         source = ticket.source
         destination = ticket.destination
-        print(f"source: {source}")
-        print(f"destination: {destination}")
+        # print(f"source: {source}")
+        # print(f"destination: {destination}")
         # Add items to the hash table
         # Starting location = key / the destination = value
         hash_table_insert(hashtable, source, destination)
-
-    # Reconstruct the intinerary with the correct link order in an array
-
-    pass
+    i = 0
+    for ticket in tickets:
+        source = ticket.source
+        destination = ticket.destination
+        target = hash_table_retrieve(hashtable, destination)
+        if source == None:
+            arr.append(destination)
+        elif target:
+            # Reconstruct the intinerary with the correct link order in an array
+            arr.append(destination)
+        i += 1
+    print(arr[:-1])
+    return arr[:-1]
 
 
 ticket_1 = Ticket("NONE", "PDX")
