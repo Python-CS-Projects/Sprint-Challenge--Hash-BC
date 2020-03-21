@@ -23,13 +23,12 @@ def proof_of_work(last_proof):
     start = timer()
 
     print("Searching for next proof")
-    proof = 0
+    proof = str(0)
     #  TODO: Your code here
-    last_six = int(str(last_proof)[-6:])
-    # print(f"Whole Num: {last_proof}")
-    # print(f"Last six: {last_proof}")
-    while valid_proof(last_six, proof) is False:
-        proof += 1
+    # conver last_proof to an string
+    while valid_proof(str(last_proof), proof) is False:
+        # Returns a Python integer with 32 random bits.
+        proof = str(random.getrandbits(32))
     print("Proof found: " + str(proof) + " in " + str(timer() - start))
     return proof
 
@@ -44,7 +43,10 @@ def valid_proof(last_hash, proof):
     """
 
     # TODO: Your code here!
-    
+    last_six = int(str(last_proof)[-6:])
+
+    guess_hash = hashlib.sha256(last_hash).hexdigest()
+    print(guess_hash)
     pass
 
 
